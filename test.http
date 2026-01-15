@@ -1,0 +1,35 @@
+### Health Check
+GET http://localhost:3000/health
+
+### Create PaymentIntent - Valid request
+POST http://localhost:3000/api/checkout/create-intent
+Content-Type: application/json
+
+{
+  "femaleQty": 2,
+  "maleQty": 1,
+  "language": "en"
+}
+
+### Create PaymentIntent - Both zero (should fail)
+POST http://localhost:3000/api/checkout/create-intent
+Content-Type: application/json
+
+{
+  "femaleQty": 0,
+  "maleQty": 0,
+  "language": "en"
+}
+
+### Create PaymentIntent - Negative (should fail)
+POST http://localhost:3000/api/checkout/create-intent
+Content-Type: application/json
+
+{
+  "femaleQty": -1,
+  "maleQty": 1,
+  "language": "en"
+}
+
+### Get QR code (will be pending until webhook fires)
+GET http://localhost:3000/api/orders/pi_test_placeholder/qr
